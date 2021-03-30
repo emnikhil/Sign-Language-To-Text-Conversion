@@ -8,7 +8,7 @@ import os
 
 mode = 'testingData'
 directory = 'dataSet/' + mode + '/'
-minValue = 70
+minValue = 35
 
 capture = cv2.VideoCapture(0)
 interrupt = -1
