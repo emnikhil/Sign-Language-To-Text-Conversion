@@ -15,8 +15,7 @@ The Image captured is processed using image processing and is firstly converted 
 Library Requirements :
 1. os --> `pip install os-sys`      
 2. numpy --> `pip install numpy`        
-3. cv2 --> `pip install opencv-python`      
-
+3. cv2 --> `pip install opencv-pytho      
 
 
 ### License
