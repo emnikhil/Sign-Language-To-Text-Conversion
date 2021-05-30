@@ -111,11 +111,11 @@ while True:
     # Drawing the ROI
     # The increment/decrement by 1 is to compensate for the bounding box
     
-    cv2.rectangle(frame, (220-1, 9), (620+1, 419), (255,0,0) ,1)
+    cv2.rectangle(frame, (x1-1, y1-1), (x2+1, y2+1), (255, 0, 0) ,1)
     
     # Extracting the ROI
     
-    roi = frame[10:420, 220:520]
+    roi = frame[y1:y2, x1:x2]
 
     cv2.imshow("Frame", frame)
     

@@ -111,7 +111,7 @@ while True:
     # Drawing the ROI
     # The increment/decrement by 1 is to compensate for the bounding box
     
-    cv2.rectangle(frame, (220-1, 9), (620+1, 419), (255,0,0) ,1)
+    cv2.rectangle(frame, (220-1, 9), (620+1, 419), (255, 0, 0) ,1)
     
     # Extracting the ROI
     
@@ -122,9 +122,9 @@ while True:
     # Image Processing
 
     gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-    blur = cv2.GaussianBlur(gray,(5,5),2)
+    blur = cv2.GaussianBlur(gray, (5,5), 2)
         
-    th3 = cv2.adaptiveThreshold(blur,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,11,2)
+    th3 = cv2.adaptiveThreshold(blur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2)
     ret, test_image = cv2.threshold(th3, minValue, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
     
     # Output Image after the Image Processing that is used for data collection 
