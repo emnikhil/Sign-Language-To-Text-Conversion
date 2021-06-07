@@ -14,8 +14,8 @@ if not os.path.exists("dataSet/trainingData"):
 if not os.path.exists("dataSet/testingData"):
     os.makedirs("dataSet/testingData")
 
-# Making folders from 0 to 9 in the training and testing data folders respectively
-for i in range(10):
+# Making folder  0 (i.e blank) in the training and testing data folders respectively
+for i in range(0):
     if not os.path.exists("dataSet/trainingData/" + str(i)):
         os.makedirs("dataSet/trainingData/" + str(i))
 
