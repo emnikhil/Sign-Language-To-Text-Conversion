@@ -17,6 +17,8 @@ import enchant
 
 from keras.models import model_from_json
 
+os.environ["THEANO_FLAGS"] = "device=cuda, assert_no_cpu_op=True"
+
 #Application :
 
 class Application:
@@ -27,12 +29,13 @@ class Application:
         self.vs = cv2.VideoCapture(0)
         self.current_image = None
         self.current_image2 = None
-        self.json_file = open("Models\model-bw.json", "r")
+        self.json_file = open("Models\model_new.json", "r")
         self.model_json = self.json_file.read()
         self.json_file.close()
 
         self.loaded_model = model_from_json(self.model_json)
-        self.loaded_model.load_weights("Models\model-bw.h5")
+        self.loaded_model.load_weights("Models\model_new.h5")
+
         self.json_file_dru = open("Models\model-bw_dru.json" , "r")
         self.model_json_dru = self.json_file_dru.read()
         self.json_file_dru.close()
@@ -51,7 +54,7 @@ class Application:
 
         self.loaded_model_smn = model_from_json(self.model_json_smn)
         self.loaded_model_smn.load_weights("Models\model-bw_smn.h5")
-    
+
         self.ct = {}
         self.ct['blank'] = 0
         self.blank_flag = 0
@@ -190,13 +193,14 @@ class Application:
                 self.bt3.config(text = "")
 
 
-        self.root.after(30, self.video_loop)
+        self.root.after(5, self.video_loop)
 
     def predict(self, test_image):
 
         test_image = cv2.resize(test_image, (128, 128))
 
         result = self.loaded_model.predict(test_image.reshape(1, 128, 128, 1))
+
 
         result_dru = self.loaded_model_dru.predict(test_image.reshape(1 , 128 , 128 , 1))
 
@@ -221,6 +225,7 @@ class Application:
         prediction = sorted(prediction.items(), key = operator.itemgetter(1), reverse = True)
 
         self.current_symbol = prediction[0][0]
+
 
         #LAYER 2
 
@@ -266,7 +271,7 @@ class Application:
         	else:
 
         		self.current_symbol = prediction[0][0]
-
+        
         if(self.current_symbol == 'blank'):
 
             for i in ascii_uppercase:

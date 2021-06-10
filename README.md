@@ -1,5 +1,7 @@
 # Sign Language to Text Conversion
 
+![Output Video](images/outputVideo.gif)
+
 ## Abstract
 
 Sign language is one of the oldest and most natural form of language for communication, but since most people do not know sign language and interpreters are very difficult to come by we have come up with a real time method using neural networks for fingerspelling based american sign language.
@@ -123,7 +125,7 @@ So, to handle above cases I made three different classifiers for classifying the
 
 The GUI(Graphical User Interface) of the application is as shown below :
 
-![GUI](gui.png)
+![GUI](images/gui.gif)
 
 Flow Chart for Gesture Classification is as following :
 
