@@ -1,6 +1,6 @@
 # Sign Language to Text Conversion
 
-![Output Video](images/outputImages.gif)
+![Output Video](images/outputVideo.gif)
 
 ## Abstract
 
