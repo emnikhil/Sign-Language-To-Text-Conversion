@@ -1,6 +1,6 @@
 # Sign Language to Text Conversion
 
-![Output Video](images/outputImages.gif)
+![Output Video](images/outputVideo.gif)
 
 ## Abstract
 
@@ -125,7 +125,7 @@ So, to handle above cases I made three different classifiers for classifying the
 
 The GUI(Graphical User Interface) of the application is as shown below :
 
-![GUI](images/gui.gif)
+![GUI](images/gui.png)
 
 Flow Chart for Gesture Classification is as following :
 
