@@ -100,12 +100,69 @@ def func(path):
 
 ### 3. After the creation of the training and testing data. The third step is of creating a model for training. Here, I have used Convolutional Neural Network(CNN) for building this model. The model summary is as following 
 
+#### Convolutional Neural Network(CNN)
+Unlike regular Neural Networks, in the layers of CNN, the neurons are arranged in 3 dimensions: width, height, depth.       
+
+The neurons in a layer will only be connected to a small region of the layer (window size) before it, instead of all of the neurons in a fully-connected manner.       
+
+Moreover, the final output layer would have dimensions(number of classes), because by the end of the CNN architecture we will reduce the full image into a single vector of class scores.
+
+![CNN](images/cnn.png)
+
+##### 1. Convolutional Layer:  
+In convolution layer I  have taken a small window size [typically of length 5*5] that extends to the depth of the input matrix. 
+
+The layer consists of learnable filters of window size. During every iteration I slid the window by stride size [typically 1], and compute the dot product of filter entries and input values at a given position. 
+
+As I continue this process well create a 2-Dimensional activation matrix that gives the response of that matrix at every spatial position. 
+
+That is, the network will learn filters that activate when they see some type of visual feature such as an edge of some orientation or a blotch of some colour. 
+
+##### 2. Pooling Layer: 
+We use pooling layer to decrease the size of activation matrix and ultimately reduce the learnable parameters. 
+
+There are two types of pooling:
+
+##### a. Max Pooling: 
+In max pooling we take a window size [for example window of size 2*2], and only taken the maximum of 4 values. 
+
+Well lid this window and continue this process, so well finally get an activation matrix half of its original Size.
+
+##### b. Average Pooling: 
+In average pooling we take average of all Values in a window.
+
+![pooling](images/pooling.jpg)
+
+##### 3. Fully Connected Layer:
+In convolution layer neurons are connected only to a local region, while in a fully connected region, well connect the all the inputs to neurons.
+
+<p align="center">
+  <img src="images/fullyConnectedLayer.png" alt="Fully Connected Layer"/>
+</p>
+
+##### 4. Final Output Layer: 
+After getting values from fully connected layer, well connect them to final layer of neurons [having count equal to total number of classes], that will predict the probability of each image to be in different classes.
+
 ![Model Summary](images/model_summary.PNG)
 
 ![Output](images/output.PNG)
 
 ### 4: The final step after the model has been trained is of creating a GUI that will be used to convert Sings into text and form sentence, which would be helpful for communicating with D&M people.
 
+##### Training:
+I have converted our input images (RGB) into grayscale and applied gaussian blur to remove unnecessary noise. I then applied adaptive threshold to extract hand from the background and resize the images to 128 x 128.
+
+I feed the input images after preprocessing to the model for training and testing after applying all the operations mentioned above.
+
+The prediction layer estimates how likely the image will fall under one of the classes. So, the output is normalized between 0 and 1 and such that the sum of each value in each class sums to 1. I have achieved this using SoftMax function.
+
+At first the output of the prediction layer will be somewhat far from the actual value. To make it better I have trained the networks using labeled data. The cross-entropy is a performance measurement used in the classification. It is a continuous function which is positive at values which is not same as labeled value and is zero exactly when it is equal to the labeled value. 
+
+Therefore, I optimized the cross-entropy by minimizing it as close to zero. To do this in my network layer I adjusted the weights of my neural network. TensorFlow has an inbuilt function to calculate the cross entropy.
+
+As I have out the cross-entropy function, then I optimized it using Gradient Descent in fact with the best gradient descent optimizer is called Adam Optimizer.
+
+##### Testing:
 While testing the applications I found out that some of the symbol predictions were coming out wrong.
 
 So, I used two layers of algorithms to verify and predict symbols which are more similar to each other so that I can get close as I can to detect the symbol shown. 
@@ -134,6 +191,15 @@ Flow Chart for Gesture Classification is as following :
 Application Working Diagram is as following :
 
 ![application](images/app.PNG)
+
+### 5. Results:
+I have achieved an accuracy of 95.8% in my model using only layer 1 of the algorithm, and using the combination of layer 1 and layer 2 I achieve an accuracy of 98.0%.
+
+Below are the confusion matrices for our results:
+
+![algo1](images/algo1Result.jpg)
+![algo1 + algo2](images/algo12Result.jpg)
+
 
 ## Libraries Requirements -(Requires the latest pip version to install all the packages)
 
