@@ -203,7 +203,7 @@ Below are the confusion matrices for our results:
 
 ## Libraries Requirements -(Requires the latest pip version to install all the packages)
 
-Note : Python 3.6 is required to build this project, as some of the libraries required can't be installed on the lastest version of the Python  
+Note : Python 3.8 or above is required to build this project, as some of the libraries required can't be installed on the lastest version of the Python  
 
 ```bash
 1. Lastest pip -> pip install --upgrade pip
